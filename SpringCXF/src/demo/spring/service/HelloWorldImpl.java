@@ -10,8 +10,8 @@ import javax.xml.ws.soap.SOAPBinding;
 public class HelloWorldImpl implements HelloWorld {
 
 	@WebMethod
-	public String sayHello() {
+	public String sayHello(String msg) {
 		// TODO Auto-generated method stub
-		return "say Hello!";
+		return "say Hello!"+msg;
 	}
 }

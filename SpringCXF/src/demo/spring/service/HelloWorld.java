@@ -6,6 +6,6 @@ import javax.jws.WebService;
 public interface HelloWorld {
 
 	
-	public String sayHello();
+	public String sayHello(String msg);
 	
 }
