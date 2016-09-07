@@ -14,6 +14,7 @@ public class CxfClientISG {
 	
 	// hello=(HelloWorld) ctx.getBean("client");
 	
+	//To Test ISGG web servie
 	NativeEventProviderSOAPWS event=(NativeEventProviderSOAPWS) ctx.getBean("client");
 		
 	String s=event.getNativeEventsByState("NJ");

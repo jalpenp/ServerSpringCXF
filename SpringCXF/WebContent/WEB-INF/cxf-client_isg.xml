@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+ 
+<bean id="clientService" class="com.spring.client.ClientPasswordCallback"/>
+  
+ <jaxws:client id="client" 
+ serviceClass="com.isg.de.ws.server.soap.NativeEventProviderSOAPWS"
+ address="https://data1.xcmdata.org/ISGDE/soap/NativeEventProvider?wsdl" >
+ <jaxws:outInterceptors>
+ <bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+ <constructor-arg>
+ <map>
+  <entry key="action" value="UsernameToken"/>
+  <entry key="user" value="admin"/>
+   <entry key="passwordType" value="PasswordText"/>
+   <entry key="passwordCallbackRef">
+              <ref bean="clientService"/>
+   </entry>
+ </map>
+ </constructor-arg>
+ </bean>
+ </jaxws:outInterceptors>
+ </jaxws:client>
+	
+
+
+</beans>
