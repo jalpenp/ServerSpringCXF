@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+<context:annotation-config/>
+<context:component-scan base-package="com.spring.client"/>
+ <!-- 
+<bean id="clientService" class="com.spring.client.ClientPasswordCallback"/>
+  --> 
+ <jaxws:client id="client" 
+ serviceClass="demo.spring.service.HelloWorld"
+ address="http://localhost:8080/SpringCXF/services/HelloWorld" >
+ <jaxws:outInterceptors>
+ <bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+ <constructor-arg>
+ <map>
+  <entry key="action" value="UsernameToken"/>
+  <entry key="user" value="SampleTest"/>
+   <entry key="passwordType" value="PasswordText"/>
+   <entry key="passwordCallbackRef">
+              <ref bean="clientService"/>
+   </entry>
+ </map>
+ </constructor-arg>
+ </bean>
+ </jaxws:outInterceptors>
+ </jaxws:client>
+	
+
+
+</beans>
